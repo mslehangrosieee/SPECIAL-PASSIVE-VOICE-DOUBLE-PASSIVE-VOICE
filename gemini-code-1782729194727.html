@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luyện Viết Câu Bị Động Khách Quan - Ms Lê Hằng English</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- ĐỊNH DẠNG GIAO DIỆN & HIỆU ỨNG NỀN ĐỘNG --- */
+        :root {
+            --primary-color: #8854C0;
+            --secondary-color: #FDCB6E;
+            --accent-color: #00C9A7;
+            --correct-color: #00D26A;
+            --wrong-color: #FF4757;
+            --card-bg: #FFFFFF;
+            --text-color: #2D3436;
+        }
+
+        * {
+            box-sizing: border-box;
+            font-family: 'Quicksand', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        body {
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: linear-gradient(-45deg, #FF7675, #8854C0, #00C9A7, #FDCB6E);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cpath d='M9 20 L15 15 L21 20 M40 40 A 4 4 0 1 0 40 32 A 4 4 0 1 0 40 40' fill='none' stroke='%23ffffff' stroke-opacity='0.15' stroke-width='2'/%3E%3C/svg%3E");
+            z-index: 0;
+            pointer-events: none;
+            animation: floatingPattern 40s linear infinite;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes floatingPattern {
+            0% { background-position: 0 0; }
+            100% { background-position: 500px 500px; }
+        }
+
+        .container {
+            width: 100%;
+            max-width: 780px;
+            z-index: 1;
+        }
+
+        .header-teacher {
+            font-size: 1.1rem;
+            font-weight: 900;
+            color: #FFFFFF;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            margin-bottom: 8px;
+        }
+
+        /* Khung nhắc nhở học tập */
+        .notice-box {
+            background: #FFEDD5;
+            border: 3px solid #F97316;
+            border-radius: 15px;
+            padding: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 6px 0 #EA580C;
+            text-align: center;
+            color: #7C2D12;
+        }
+
+        .notice-title {
+            font-weight: 900;
+            font-size: 1.2rem;
+            color: #EA580C;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        /* BẢNG TÓM TẮT LÝ THUYẾT GỐC */
+        .theory-card {
+            background: #EEF2F6;
+            border: 3px solid #64748B;
+            border-radius: 18px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 6px 0 #475569;
+        }
+
+        .theory-title {
+            font-size: 1.2rem;
+            font-weight: 900;
+            color: #1E293B;
+            margin-top: 0;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .theory-block {
+            background: #FFFFFF;
+            padding: 12px 15px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            border-left: 5px solid var(--primary-color);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* KHUNG CARD CÂU HỎI VIẾT LẠI CÂU */
+        .section-title {
+            background: var(--primary-color);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 12px;
+            margin: 25px 0 15px 0;
+            box-shadow: 0 4px 0 #6C3FB8;
+            font-weight: 900;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        .question-card {
+            background: var(--card-bg);
+            border: 4px solid #E2E8F0;
+            border-radius: 20px;
+            padding: 22px;
+            margin-bottom: 25px;
+            box-shadow: 0 8px 0 #CBD5E1;
+        }
+
+        .origin-sentence {
+            background: #F8FAFC;
+            border: 2px dashed #94A3B8;
+            padding: 12px 15px;
+            border-radius: 12px;
+            font-weight: 700;
+            color: #334155;
+            margin-bottom: 15px;
+            font-size: 1.05rem;
+        }
+
+        .origin-sentence .tag {
+            background: #64748B;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            margin-right: 5px;
+            display: inline-block;
+        }
+
+        /* HỆ THỐNG Ô NHẬP LIỆU 3D */
+        .input-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        .prompt-line {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            font-size: 1.1rem;
+            font-weight: 900;
+            color: var(--text-color);
+        }
+
+        .transform-input {
+            flex: 1;
+            min-width: 250px;
+            padding: 12px 16px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            border: 3px solid #CBD5E1;
+            border-radius: 12px;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.06);
+            outline: none;
+            color: #0F172A;
+        }
+
+        .transform-input:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(136, 84, 192, 0.2);
+        }
+
+        .transform-input.correct-field {
+            border-color: var(--correct-color) !important;
+            background-color: #E6FBF1;
+            color: #008744;
+        }
+
+        .transform-input.wrong-field {
+            border-color: var(--wrong-color) !important;
+            background-color: #FFEAEB;
+            color: #C51F24;
+            animation: shake 0.4s ease;
+        }
+
+        .btn-check-item {
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1rem;
+            font-weight: 900;
+            border-radius: 12px;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #00A88F;
+        }
+
+        .btn-check-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 0 #00A88F;
+        }
+
+        .btn-check-item:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 #00A88F;
+        }
+
+        .btn-check-item.disabled {
+            background: #94A3B8 !important;
+            box-shadow: 0 4px 0 #64748B !important;
+            pointer-events: none;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-6px); }
+            40%, 80% { transform: translateX(6px); }
+        }
+
+        /* KHUNG GIẢI THÍCH SIÊU CHI TIẾT */
+        .explanation-box {
+            background: #F8FAFC;
+            border-left: 6px solid var(--primary-color);
+            border-radius: 0 12px 12px 0;
+            padding: 15px;
+            margin-top: 15px;
+            display: none;
+            animation: fadeIn 0.4s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .exp-title {
+            font-weight: 900;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            font-size: 1.05rem;
+        }
+
+        .exp-section {
+            margin-bottom: 6px;
+            font-size: 0.95rem;
+            color: #475569;
+            line-height: 1.5;
+        }
+
+        .exp-highlight {
+            font-weight: 700;
+            color: #0F172A;
+        }
+
+        /* NÚT NỘP BÀI TỔNG KẾT */
+        .submit-container {
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .btn-submit-main {
+            background: #FF7675;
+            color: #FFFFFF;
+            font-size: 1.3rem;
+            font-weight: 900;
+            padding: 16px 45px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            box-shadow: 0 8px 0 #D63031;
+        }
+
+        .btn-submit-main:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 11px 0 #D63031;
+        }
+
+        /* POPUP KẾT QUẢ CUỐI CÙNG */
+        .modal-result {
+            position: fixed;
+            top:0; left:0; width:100%; height:100%;
+            background: rgba(0,0,0,0.6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 200;
+            display: none;
+        }
+
+        .modal-body {
+            background: #FFFFFF;
+            padding: 30px;
+            border-radius: 24px;
+            max-width: 480px;
+            width: 90%;
+            text-align: center;
+            border: 5px solid var(--accent-color);
+            box-shadow: 0 12px 0 #00A88F;
+            animation: popUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
+        @keyframes popUp {
+            from { transform: scale(0.7); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .score-text {
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: var(--primary-color);
+            margin: 15px 0;
+        }
+
+        .feedback-text {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-color);
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .btn-close-modal {
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-weight: 700;
+            font-size: 1rem;
+            border-radius: 12px;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #00A88F;
+        }
+
+        canvas {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 150;
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="confetti-canvas"></canvas>
+
+    <div class="container">
+        <div class="header-teacher">Giáo viên tạo: Ms Lê Hằng English</div>
+        
+        <div class="notice-box">
+            <span class="notice-title">⚠️ LỜI NHẮC CỰC KỲ QUAN TRỌNG ⚠️</span>
+            Chỉ có đọc kỹ giải thích ngay sau mỗi câu, sau đó ghi lại từ vựng/cấu trúc mới vào vở để học thì mới thực sự giỏi lên. Làm cho xong mà không đọc giải thích hay đọc qua loa không ghi chép thì chỉ tốn thời gian vô ích!
+        </div>
+
+        <div class="theory-card">
+            <h3 class="theory-title">📘 BẢNG CẤU TRÚC GỐC ĐỂ TRA CỨU</h3>
+            <div class="theory-block">
+                <strong>Cấu trúc gốc:</strong> People / they + [Verb] + that + clause <br>
+                <em>(think / say / suppose / believe / consider / report ....)</em>
+            </div>
+            <div class="theory-block">
+                <strong>Cách 1:</strong> It + be + V3/ed + that + clause
+            </div>
+            <div class="theory-block">
+                <strong>Cách 2:</strong> <br>
+                • S + be + V3/ed + <strong>to V1</strong> → <em>nếu hành động sau ở Hiện tại</em><br>
+                • S + be + V3/ed + <strong>to have + V3/ed</strong> → <em>nếu hành động sau ở Quá khứ</em>
+            </div>
+        </div>
+
+        <div class="section-title">Thực Hành Từ Các Đề Thi Chuyên Anh</div>
+
+        <div id="quiz-container"></div>
+
+        <div class="submit-container">
+            <button class="btn-submit-main" onclick="evaluateAll()">NỘP BÀI TỔNG KẾT MÌNH ĐÃ LÀM</button>
+        </div>
+    </div>
+
+    <div class="modal-result" id="result-modal">
+        <div class="modal-body">
+            <h2 style="margin-top:0; color: var(--accent-color);">🎉 KẾT QUẢ BÀI LÀM 🎉</h2>
+            <div class="score-text" id="score-display">0/0</div>
+            <div class="feedback-text" id="feedback-display"></div>
+            <button class="btn-close-modal" onclick="closeModal()">Làm lại bài thi</button>
+        </div>
+    </div>
+
+    <script>
+        // WEB AUDIO API - Hệ thống âm thanh tương tác trực tiếp
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        function playTone(freq, type, duration) {
+            try {
+                if (audioCtx.state === 'suspended') audioCtx.resume();
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = type;
+                osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+                gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + duration);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start();
+                osc.stop(audioCtx.currentTime + duration);
+            } catch(e) {}
+        }
+        function soundCorrect() {
+            playTone(523.25, 'sine', 0.15);
+            setTimeout(() => playTone(659.25, 'sine', 0.3), 100);
+        }
+        function soundWrong() {
+            playTone(180, 'sawtooth', 0.2);
+            setTimeout(() => playTone(130, 'sawtooth', 0.3), 150);
+        }
+
+        // DỮ LIỆU ĐỀ BÀI CHUYÊN ANH VÀ GIẢI THÍCH CHI TIẾT
+        const quizData = [
+            {
+                id: "q1",
+                source: "Đề luyện thi thông thường",
+                origin: "People say football is the best game to play.",
+                promptStart: "Football",
+                // Chấp nhận viết tiếp từ sau từ gợi ý gốc (không phân biệt hoa thường, khoảng trắng, dấu chấm)
+                acceptableAnswers: ["is said to be the best game to play"],
+                fullCorrectShow: "Football is said to be the best game to play.",
+                translation: "Bóng đá được nói là trò chơi hay nhất để chơi.",
+                analysis: "Động từ tường thuật chính 'say' ở hiện tại đơn và động từ mệnh đề sau 'is' cũng ở hiện tại đơn -> Cùng mốc thời gian hiện tại.",
+                justification: "Áp dụng Cách 2 ở hiện tại: S + be + V3/ed + to V1. Ta chuyển động từ 'is' thành dạng nguyên mẫu nguyên thể là 'to be'.",
+                trap: "Học sinh thường hay quên chia động từ 'be' theo chủ ngữ số ít số nhiều, ở đây 'Football' số ít nên phải dùng 'is said'."
+            },
+            {
+                id: "q2",
+                source: "Chuyên Anh Tỉnh Bình Thuận",
+                origin: "People think that someone started the fire deliberately.",
+                promptStart: "The fire",
+                acceptableAnswers: ["is thought to have been started deliberately"],
+                fullCorrectShow: "The fire is thought to have been started deliberately.",
+                translation: "Ngọn lửa được cho là đã bị cố ý phóng hỏa.",
+                analysis: "Động từ 'think' ở hiện tại đơn, nhưng động từ mệnh đề sau 'started' lại ở quá khứ đơn -> Lệch mốc thời gian (Mệnh đề sau xảy ra trước).",
+                justification: "Áp dụng Cách 2 ở quá khứ: S + be + V3/ed + to have + V3/ed. Đặc biệt, chủ ngữ mới 'The fire' (ngọn lửa) là vật bị tác động, nên ta phải dùng thể bị động kép ở phía sau: 'to have been started'.",
+                trap: "Đây là câu bẫy cực mạnh! Nếu chỉ viết 'to have started' là sai hoàn toàn vì ngọn lửa không thể tự nó phóng hỏa nó được mà phải là bị động 'to have been started'."
+            },
+            {
+                id: "q3",
+                source: "Chuyên Anh Tỉnh Vĩnh Phúc",
+                origin: "They say the ice in Antarctica is getting thinner all the time. (Dùng từ gợi ý: SAID)",
+                promptStart: "The ice",
+                acceptableAnswers: ["in antarctica is said to be getting thinner all the time"],
+                fullCorrectShow: "The ice in Antarctica is said to be getting thinner all the time.",
+                translation: "Băng ở Nam Cực được nói là đang ngày càng trở nên mỏng đi suốt thời gian qua.",
+                analysis: "Động từ 'say' ở hiện tại đơn, mệnh đề sau 'is getting' ở hiện tại tiếp diễn -> Cùng mốc thời gian hiện tại.",
+                justification: "Hành động mệnh đề sau mang tính tiếp diễn, ta biến đổi cụm động từ thành dạng nguyên mẫu tiếp diễn: 'to be + V-ing' -> 'to be getting'.",
+                trap: "Cần chú ý cụm danh từ chủ ngữ đầy đủ là 'The ice in Antarctica' chứ không phải chỉ mỗi độc lập từ 'The ice'."
+            },
+            {
+                id: "q4",
+                source: "Chuyên Anh Tỉnh Dak Lak / Quảng Trị",
+                origin: "People believe he won a lot of money on the lottery (Dùng từ gợi ý: TO)",
+                promptStart: "He",
+                acceptableAnswers: ["is believed to have won a lot of money on the lottery"],
+                fullCorrectShow: "He is believed to have won a lot of money on the lottery.",
+                translation: "Anh ấy được tin là đã trúng rất nhiều tiền khi chơi xổ số.",
+                analysis: "Động từ 'believe' ở hiện tại đơn, động từ mệnh đề sau 'won' ở quá khứ đơn -> Lệch mốc thời gian quá khứ.",
+                justification: "Áp dụng Cách 2 ở quá khứ: S + be + V3/ed + to have + V3/ed. Ta chuyển đổi động từ bất quy tắc 'won' thành dạng thức cấu trúc 'to have won'.",
+                trap: "Học sinh mất điểm nếu nhầm lẫn chia động từ sang 'to win' do không chú ý phân biệt sự chênh lệch thì thời giữa hai mệnh đề gốc."
+            }
+        ];
+
+        // CHUẨN HÓA CHUỖI ĐỂ KIỂM TRA ĐÁP ÁN KHÔNG BỊ LỖI DẤU CÂU/KHOẢNG CÁCH KHÔNG ĐÁNG CÓ
+        function normalizeString(str) {
+            return str.toLowerCase()
+                      .replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"") // Xóa toàn bộ dấu câu câu
+                      .replace(/\s+/g," ")                       // Thay thế nhiều khoảng trắng thành 1 khoảng trắng
+                      .trim();                                   // Xóa khoảng trắng 2 đầu
+        }
+
+        // RENDER TOÀN BỘ DANH SÁCH CÂU HỎI VIẾT LẠI CÂU
+        function renderQuiz() {
+            const container = document.getElementById('quiz-container');
+            
+            quizData.forEach((q, index) => {
+                const card = document.createElement('div');
+                card.className = 'question-card';
+                card.id = `card_${q.id}`;
+
+                // Dòng đề bài gốc kèm tag trường chuyên
+                const originDiv = document.createElement('div');
+                originDiv.className = 'origin-sentence';
+                originDiv.innerHTML = `<span class="tag">${q.source}</span> Câu ${index + 1}: ${q.origin}`;
+                card.appendChild(originDiv);
+
+                // Khu vực ô nhập câu viết lại
+                const wrapper = document.createElement('div');
+                wrapper.className = 'input-wrapper';
+
+                const promptLine = document.createElement('div');
+                promptLine.className = 'prompt-line';
+                promptLine.innerHTML = `<span>➔ ${q.promptStart}</span>`;
+
+                const inputField = document.createElement('input');
+                inputField.type = "text";
+                inputField.className = "transform-input";
+                inputField.id = `input_${q.id}`;
+                inputField.placeholder = "Nhập phần tiếp theo của câu vào đây...";
+                
+                // Cho phép ấn Enter để check nhanh
+                inputField.addEventListener("keyup", function(event) {
+                    if (event.key === "Enter") {
+                        checkSentenceAnswer(q.id);
+                    }
+                });
+
+                const checkBtn = document.createElement('button');
+                checkBtn.className = "btn-check-item";
+                checkBtn.id = `btn_${q.id}`;
+                checkBtn.innerText = "Kiểm tra";
+                checkBtn.onclick = () => checkSentenceAnswer(q.id);
+
+                promptLine.appendChild(inputField);
+                promptLine.appendChild(checkBtn);
+                wrapper.appendChild(promptLine);
+                card.appendChild(wrapper);
+
+                // Khung giải thích ẩn sẵn bên dưới bài học
+                const expBox = document.createElement('div');
+                expBox.className = 'explanation-box';
+                expBox.id = `exp_${q.id}`;
+                expBox.innerHTML = `
+                    <div class="exp-title">🌟 GIẢI THÍCH CHI TIẾT TỪ MS LÊ HẰNG:</div>
+                    <div class="exp-section"><span class="exp-highlight">➔ Câu hoàn chỉnh đúng:</span> <span style="color:#008744; font-weight:700;">${q.fullCorrectShow}</span></div>
+                    <div class="exp-section"><span class="exp-highlight">1. Dịch nghĩa:</span> ${q.translation}</div>
+                    <div class="exp-section"><span class="exp-highlight">2. Phân tích thì:</span> ${q.analysis}</div>
+                    <div class="exp-section"><span class="exp-highlight">3. Cơ sở áp dụng cấu trúc:</span> ${q.justification}</div>
+                    <div class="exp-section"><span class="exp-highlight">4. Cảnh báo lỗi sai / Bẫy đề thi:</span> <span style="color:#FF4757; font-weight:700;">${q.trap}</span></div>
+                `;
+                card.appendChild(expBox);
+                container.appendChild(card);
+            });
+        }
+
+        // KIỂM TRA ĐÁP ÁN TỪNG CÂU KHỚP LÝ THUYẾT KHÔNG
+        function checkSentenceAnswer(qId) {
+            const inputEl = document.getElementById(`input_${qId}`);
+            const btnEl = document.getElementById(`btn_${qId}`);
+            const q = quizData.find(item => item.id === qId);
+
+            if (!inputEl || inputEl.classList.contains('correct-field') || inputEl.classList.contains('wrong-field')) return;
+
+            const userTextNormalized = normalizeString(inputEl.value);
+            
+            // So khớp xem chuỗi nhập vào có trùng khớp với phương án chuẩn hóa nào không
+            const isCorrect = q.acceptableAnswers.some(ans => normalizeString(ans) === userTextNormalized);
+
+            inputEl.disabled = true;
+            btnEl.classList.add('disabled');
+
+            if (isCorrect) {
+                inputEl.classList.add('correct-field');
+                soundCorrect();
+                triggerConfettiEffect();
+            } else {
+                inputEl.classList.add('wrong-field');
+                soundWrong();
+            }
+
+            // Hiện bảng giải thích cặn kẽ ngay sau khi bấm
+            const exp = document.getElementById(`exp_${qId}`);
+            if (exp) exp.style.display = 'block';
+        }
+
+        // HIỆU ỨNG PHÁO GIẤY CONFETTI KHI HỌC SINH ĐIỀN ĐÚNG
+        const canvasEl = document.getElementById('confetti-canvas');
+        const ctxCanvas = canvasEl.getContext('2d');
+        let particles = [];
+        function resizeCanvas() {
+            canvasEl.width = window.innerWidth;
+            canvasEl.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        function triggerConfettiEffect() {
+            for (let i = 0; i < 45; i++) {
+                particles.push({
+                    x: window.innerWidth / 2 + (Math.random() - 0.5) * 300,
+                    y: window.innerHeight / 2 + (Math.random() - 0.5) * 200,
+                    vx: (Math.random() - 0.5) * 12,
+                    vy: (Math.random() - 0.8) * 14,
+                    color: `hsl(${Math.random() * 360}, 100%, 50%)`,
+                    size: Math.random() * 7 + 5,
+                    alpha: 1
+                });
+            }
+        }
+
+        function updateConfetti() {
+            ctxCanvas.clearRect(0, 0, canvasEl.width, canvasEl.height);
+            particles.forEach((p, idx) => {
+                p.x += p.vx;
+                p.y += p.vy;
+                p.vy += 0.22;
+                p.alpha -= 0.016;
+                if (p.alpha <= 0) {
+                    particles.splice(idx, 1);
+                } else {
+                    ctxCanvas.fillStyle = p.color;
+                    ctxCanvas.globalAlpha = p.alpha;
+                    ctxCanvas.beginPath();
+                    ctxCanvas.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                    ctxCanvas.fill();
+                }
+            });
+            ctxCanvas.globalAlpha = 1;
+            requestAnimationFrame(updateConfetti);
+        }
+        requestAnimationFrame(updateConfetti);
+
+        // LOGIC TÍNH TỔNG ĐIỂM TOÀN BÀI THI
+        function evaluateAll() {
+            let totalQuestions = quizData.length;
+            let correctCount = 0;
+
+            quizData.forEach(q => {
+                const inputEl = document.getElementById(`input_${q.id}`);
+                if (inputEl && inputEl.classList.contains('correct-field')) {
+                    correctCount++;
+                }
+            });
+
+            let feedback = "";
+            const percentage = (correctCount / totalQuestions) * 100;
+
+            if (percentage === 100) {
+                feedback = "Tuyệt đỉnh xuất sắc! Con nắm rất vững tư duy cấu trúc Bị Động Khách Quan của các trường Chuyên rồi đó!";
+            } else if (percentage >= 50) {
+                feedback = "Khá tốt! Tuy nhiên hãy xem lại kỹ những câu bị sai, đặc biệt là các phần bẫy chia thì để ghi nhớ sâu hơn nhé.";
+            } else {
+                feedback = "Hãy cẩn thận hơn con nhé! Đọc kỹ lại bảng công thức tổng hợp ở phía trên đầu trang và thử sức lại một lần nữa nha.";
+            }
+
+            document.getElementById('score-display').innerText = `${correctCount} / ${totalQuestions}`;
+            document.getElementById('feedback-display').innerText = feedback;
+            document.getElementById('result-modal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('result-modal').style.display = 'none';
+            // Reload để cho học sinh luyện tập lại từ đầu
+            location.reload();
+        }
+
+        window.onload = function() {
+            renderQuiz();
+        };
+    </script>
+</body>
+</html>
